@@ -5,6 +5,7 @@ import 'package:chat_app/models/user.dart';
 import 'package:chat_app/services/database.dart';
 
 class NewConversationScreen extends StatelessWidget {
+  
   const NewConversationScreen(
       {@required this.uid, @required this.contact, @required this.convoID});
   final String uid, convoID;
@@ -36,7 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   final TextEditingController textEditingController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
-
+  final TextEditingController rated = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -62,15 +63,18 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget buildInput() {
+     // var _rating = TextEditingController();
     return Container(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
             children: <Widget>[
-              // Edit text
               Flexible(
-                child: Container(
-                  child: Padding(
+                child: Container( child: 
+                Column( children: [
+                Column(children:[ TextField(maxLength: 1,decoration: const InputDecoration.collapsed(hintText: "Rate this convo (1-5)"),)]),
+                  
+                Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
                         autofocus: true,
@@ -79,7 +83,11 @@ class _ChatScreenState extends State<ChatScreen> {
                         decoration: const InputDecoration.collapsed(
                           hintText: 'Type your message...',
                         ),
-                      )),
+                      )
+                      ),
+                      
+                      ],
+                      ),
                 ),
               ),
               Container(
